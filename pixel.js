@@ -2,9 +2,21 @@
 
 const btn1=document.getElementById("btn1");
 const btn2=document.getElementById("btn2");
-const imgAll=document.querySelectorAll("img");  // da i nodi 
-const cardAll=document.querySelectorAll("cardAll");  
-const btnHide=document.querySelectorAll("hide");  
+const imgAll=document.querySelectorAll("img");  // da i nodi  e trasforma in array
+const cardAll=document.querySelectorAll(".col-md-4");  // piglio il div container cRD CON LA STESSA CLASSE
+const btnHide=document.querySelectorAll(".btn-danger");  
+const text=document.querySelectorAll(".text-ids");
+const form= document.getElementById("form")  
+const submit = document.getElementById("submit");
+
+
+
+
+form.onsubmit = function (e) {
+    e.preventDefault(); //previene il ricaricamento della pagina se clicco form
+  
+    call(submit.value);
+  };
 
 btn1.onclick=function(){
 call("bee")
@@ -45,7 +57,12 @@ function call(animale) {
         // console.log(oggetti.photos);
         imgAll.forEach((img,index)=>{
             img.setAttribute("src",oggetti.photos[index].src.tiny)
-        })
+        });
+//    metto l'id al posto del 9 mins
+      text.forEach((id,index)=>{
+        id.textContent=oggetti.photos[index].id
+      })
+
         
     })
     .catch((error) => console.log(error));
@@ -91,6 +108,8 @@ btnHide.forEach((bottoneHide,index)=>{
          cardAll[index].remove();
      }
  })
+
+
 
 
 
